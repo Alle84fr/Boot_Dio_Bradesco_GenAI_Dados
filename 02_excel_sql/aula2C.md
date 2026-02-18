@@ -108,3 +108,90 @@ FROM usuarios
 
 
 criou um tabela total reservas com nome e quantidade de reservas
+
+<h3>Funções agragadoras</h3>
+
+- COUNT - conta n° de registros
+- SUM - soma valores de uma coluna numérica
+- AVG - calcula a média dos valores de uma coluna numérica
+- MIN - valor minimo
+- MAX - valor máximo
+
+ex: contar user cadastrados
+<span style="color: #a3b18a;">
+SELECT COUNT (*) AS total_user FROM  usuario;
+
+</span>
+
+ex: contar user que tem reservas
+<span style="color: #a3b18a;">
+SELECT COUNT (*) AS total_user FROM  usuario us
+INNER JOIN reservas rs ON us.id = rs.id_usuario;
+
+</span>
+
+ex: contar user maior idade
+<span style="color: #a3b18a;">
+SELECT MAX (TIMESTAMPDIFF(YEAR, data_nasc, CURRENT_DATE())) AS maior_idade FROM usuarios
+
+</span>
+
+<h3>Agrupamento de resultados</h3>
+
+- SELECT
+- FROM
+- GROUP BY
+
+ex: 
+<span style="color: #a3b18a;">
+SELECT * FROM reservas (id_ser, id_destino ) 
+VALUES (1,3);</span>
+
+ex: quantas reservas para cada um dos destinos
+<span style="color: #a3b18a;">
+SELECT COUNT(*), id_destino FROM reservas 
+GRUOP BY id_destino;</span>
+
+<h3>Ordenação</h3>
+
+ex: destino que mais tem reservar
+<span style="color: #a3b18a;">
+SELECT COUNT(*) AS qtd_reserva, id_destino FROM reservas 
+GRUOP BY id_destino
+ORDER BY qtd_reserva;</span>
+
+ex: destino que menos tem reservar
+<span style="color: #a3b18a;">
+SELECT COUNT(*) AS qtd_reserva, id_destino FROM reservas 
+GRUOP BY id_destino
+ORDER BY qtd_reserva DESC;</span>
+
+<h3>Indice</h3>
+
+estruturas de dados que aceleram pesquisas
+
+estrutura
+
+EXPLAIN
+&nbsp;&nbsp;&nbsp;&nbsp; SELECT *
+&nbsp;&nbsp;&nbsp;&nbsp; FROM {{TABELA}}
+
+<b>tipos</b>
+
+![imgem](img/d8.jpg)
+
+ex: destino que mais tem reservar
+<span style="color: #a3b18a;">
+EXPLAIN
+&nbsp;&nbsp;&nbsp;&nbsp; SELECT *
+&nbsp;&nbsp;&nbsp;&nbsp; FROM usuario
+&nbsp;&nbsp;&nbsp;&nbsp; WHERE email = 'jo@gmail.com';
+</span>
+
+aparecerá coluna rows, que mostra quantas linhas foram consultadas
+
+ex: criar indice na coluna de nome
+<span style="color: #a3b18a;">
+CREATE INDEX inx_name ON usuario (nome);
+</span>
+
