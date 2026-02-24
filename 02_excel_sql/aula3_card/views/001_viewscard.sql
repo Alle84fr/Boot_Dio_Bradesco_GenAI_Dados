@@ -25,7 +25,7 @@ INNER JOIN tbl_collections col ON c.collection_id = col.id;
 /* 
 Para ver ou chama :*/
 
-SELECT * FROM vw_cards_detalhado
+SELECT * FROM vw_cards_detalhado;
 
 /* OU
 select chamando coluna por coluna
