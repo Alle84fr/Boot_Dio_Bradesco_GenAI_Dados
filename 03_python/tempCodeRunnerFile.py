@@ -1,0 +1,2 @@
+
+dicio = dici.copy()
